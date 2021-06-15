@@ -18,7 +18,7 @@ namespace UserDirectory.Models
             var mail = _context.User.Where(x => x.Email.ToLower() == user.Email.ToLower()).SingleOrDefault();
 
             if (mail == null) return true;
-            return false;
+            return mail.Id == user.Id;
         }
 
         private bool uniquePhone(User user, string phone)
@@ -26,7 +26,7 @@ namespace UserDirectory.Models
             var phoneNumber = _context.User.Where(x => x.Phone == user.Phone).SingleOrDefault();
 
             if (phoneNumber == null) return true;
-            return false;
+            return phoneNumber.Id == user.Id;
         }
     }
 }
