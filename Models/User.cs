@@ -6,6 +6,8 @@ namespace UserDirectory.Models
     // User data must have Name, Surname, Email, Birth Date, Phone, Location, and optional Photo.
     public class User
     {
+        public int Id {get; set;}
+        
         [StringLength(30, MinimumLength = 3, ErrorMessage = "Name must contain minimum 3 characters and maximum 30 characters")]
         [Required(ErrorMessage = "You must provide a name")]
         public string Name {get; set; }
