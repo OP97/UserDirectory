@@ -1,6 +1,6 @@
 # UserDirectory
 
-MVC ASP .NET Core 5 User Directory Project
+MVC ASP .NET 5 User Directory Project
 
 Endusers can create, read, update and delete records.
 
