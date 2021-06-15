@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation.AspNetCore;
 
 namespace UserDirectory
 {
@@ -25,9 +26,10 @@ namespace UserDirectory
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Models.UserValidator>());
 
             services.AddDbContext<MvcUserContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MvcUserContext")));
+                    options.UseSqlite(Configuration.GetConnectionString("MvcUserContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
