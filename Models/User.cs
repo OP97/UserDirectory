@@ -20,6 +20,7 @@ namespace UserDirectory.Models
         public string Email {get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Birth Date")]
         public DateTime BirthDate {get; set; }
         
         [Required(ErrorMessage = "You must provide a phone number")]

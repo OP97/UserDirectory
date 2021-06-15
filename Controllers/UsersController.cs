@@ -19,9 +19,25 @@ namespace UserDirectory.Controllers
         }
 
         // GET: Users
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            return View(await _context.User.ToListAsync());
+
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["SurnameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "surname_desc" : "";
+            var users = from u in _context.User
+                        select u;
+
+            switch (sortOrder)
+            {
+                case "surname_desc":
+                    users = users.OrderByDescending(u => u.Surname);
+                    break;
+                case "name_desc":
+                    users = users.OrderByDescending(u => u.Name);
+                    break;
+            }
+
+            return View(await users.AsNoTracking().ToListAsync());
         }
 
         // GET: Users/Details/5
