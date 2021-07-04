@@ -9,3 +9,5 @@ E-mail and phone fields are unique (FluentValidation)
 Sqlite Database
 
 Scaffolded razor pages
+
+![Index Page](https://github.com/OP97/UserDirectory/blob/master/crud_index.png)
