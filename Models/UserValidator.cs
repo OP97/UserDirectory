@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace UserDirectory.Models
@@ -15,7 +16,7 @@ namespace UserDirectory.Models
 
         private bool uniqueMail(User user, string email)
         {
-            var mail = _context.User.Where(x => x.Email.ToLower() == user.Email.ToLower()).SingleOrDefault();
+            var mail = _context.User.AsNoTracking().Where(x => x.Email.ToLower() == user.Email.ToLower()).SingleOrDefault();
 
             if (mail == null) return true;
             return mail.Id == user.Id;
@@ -23,7 +24,7 @@ namespace UserDirectory.Models
 
         private bool uniquePhone(User user, string phone)
         {
-            var phoneNumber = _context.User.Where(x => x.Phone == user.Phone).SingleOrDefault();
+            var phoneNumber = _context.User.AsNoTracking().Where(x => x.Phone == user.Phone).SingleOrDefault();
 
             if (phoneNumber == null) return true;
             return phoneNumber.Id == user.Id;
